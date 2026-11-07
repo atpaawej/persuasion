@@ -1,28 +1,80 @@
 # persuasion
 
-An agent skill for persuasion built on cognitive psychology and behavioral economics. It
-diagnoses why an audience resists, picks the lever the diagnosis points at, and writes the
-pitch, offer, or message — with the mechanism named and the ethics checked.
+**Your agent writes copy. This skill makes it reason about why people say yes.**
 
-No sales scripts, no urgency tricks. Every recommendation comes with the reason it works on
-this audience.
-
-## Install
+A persuasion skill for Claude Code, Cursor, Codex, OpenCode, and 16 other agents. It reads
+the decision in front of you, picks the lever that fits it, and writes the pitch, offer, or
+message. Every recommendation names the mechanism behind it.
 
 ```bash
 npx skills add atpaawej/persuasion
 ```
 
-The [skills](https://skills.sh) CLI detects your agent — Claude Code, Cursor, Codex,
-OpenCode, Copilot, Gemini, and the rest — and installs to the right directory.
+Installs into your agent's skill directory in about ten seconds. It's a Markdown folder, so
+there is nothing to configure.
 
-**Manual install** (any agent, anywhere):
+## What changes
+
+| A generic agent writes | With `persuasion` loaded |
+| --- | --- |
+| "Unlock your team's potential with powerful analytics." | "You rebuild the Monday report by hand every week. That's 90 minutes you don't get back." |
+| "Our solution helps teams save time." | "The status quo is free, so the paid tier reads as a loss. Frame it as what the free tier costs them." |
+| "Add urgency to increase conversions." | "The deadline is real, so state the date. An invented one fails the test." |
+
+Same model. The difference is that the second column knows what it is doing to a person.
+
+## Ask it things like
+
+| Ask | What comes back |
+| --- | --- |
+| "This landing page isn't converting." | The reference point, the frame that fits, and the rewritten copy |
+| "Write a pitch for our seed round." | A five-beat story with the strongest objection answered |
+| "Why won't my team adopt this tool?" | The load, the prior belief, and the loss they are protecting |
+| "How should I price the pro tier?" | Anchoring and a 2–3 option set built against the status quo |
+| "Is this countdown timer ethical?" | Green or red, plus the honest replacement if it's red |
+| "Handle the 'too expensive' objection." | The real objection, answered in the buyer's own words |
+
+## What you get back
+
+1. **Diagnosis.** The decision, the status quo, the cognitive load, the prior belief, and
+   what the audience stands to lose.
+2. **The lever.** Framing, fluency, social proof, or narrative, with the reason it follows
+   from the diagnosis.
+3. **The artifact.** The copy, the offer, the script, or the pricing page change itself.
+4. **The mechanism.** One paragraph on why this works on this audience.
+5. **The test result.** Green, or the red and its replacement.
+
+The science stays in the reasoning. The deliverable is the email, not an essay about
+Kahneman.
+
+## Inside
+
+`SKILL.md` runs a four-step loop: map the decision, route to one lever, build the argument,
+run the disclosure test. Reference modules load only when the map sends the agent there, so
+you pay for the module you need and nothing else.
+
+| Module | Covers |
+| --- | --- |
+| [cognitive-architecture](references/cognitive-architecture.md) | Bounded rationality, System 1 and System 2, cognitive load, choice architecture |
+| [framing-and-loss-aversion](references/framing-and-loss-aversion.md) | Prospect theory, the loss multiplier, the fourfold pattern, anchoring, endowment |
+| [influence-levers](references/influence-levers.md) | Reciprocity, commitment, social proof, authority, liking, scarcity, unity, key biases |
+| [narrative](references/narrative.md) | Narrative transportation, the Sparkline and Hero's Guide arcs, self-referential encoding |
+| [ethics](references/ethics.md) | The manipulation spectrum, the disclosure test, the automatic reds |
+
+## It checks itself before it hands you the draft
+
+> If the audience read an accurate, plain-language explanation of the mechanism being used,
+> would they still willingly proceed?
+
+A no means the tactic gets replaced, not reworded. Fabricated proof, invented deadlines,
+hidden fees, and obstructed cancellation are treated as failures, even when they would test
+well.
+
+## Manual install
 
 ```bash
 git clone https://github.com/atpaawej/persuasion.git ~/.claude/skills/persuasion
 ```
-
-Common skill directories:
 
 | Agent | Path |
 | --- | --- |
@@ -30,93 +82,20 @@ Common skill directories:
 | OpenCode | `~/.config/opencode/skills/persuasion` |
 | Project-local | `.claude/skills/persuasion` (or your agent's equivalent) |
 
-The folder name must stay `persuasion` — it has to match the `name` in `SKILL.md`.
+Keep the folder named `persuasion` so it matches the `name` in `SKILL.md`.
 
-## Usage
+## Questions
 
-The skill fires on its own when a request matches. You can also name it:
+**Does it work with my agent?** The `npx skills` CLI detects installed agents and writes to
+each one. Twenty are supported, including Claude Code, Cursor, Codex, Copilot, Gemini, Zed,
+and OpenCode.
 
-```
-Use the persuasion skill to rewrite this pricing page.
-```
+**Will it make my agent sound like a late-night sales page?** Its first rule is that every
+recommendation names a mechanism, and its last step rejects anything that only works because
+the audience doesn't know it's being used.
 
-Things it handles:
-
-| Ask | What you get |
-| --- | --- |
-| "This landing page isn't converting." | The reference point, the frame to use, and the rewritten copy |
-| "Write a pitch for our seed round." | A five-beat story with the objection answered |
-| "Why won't my team adopt this tool?" | A diagnosis of the load, the prior, and the loss |
-| "How should I price the pro tier?" | Anchoring and option-set design against the status quo |
-| "Is this countdown timer ethical?" | A green/red result and the replacement if it's red |
-| "Handle the 'too expensive' objection." | The strongest real objection, answered in the audience's terms |
-
-## What comes back
-
-Every run returns five things:
-
-1. **Diagnosis** — the decision, the status quo, the cognitive load, the prior belief, and
-   what the audience stands to lose.
-2. **The lever** — framing, fluency, social proof, narrative, or a combination, with why.
-3. **The artifact** — the copy, the offer, the script, or the page change itself.
-4. **The mechanism** — one paragraph on why it works on this audience.
-5. **The disclosure test** — green, or the red and its replacement.
-
-## How it works
-
-`SKILL.md` runs a four-step loop:
-
-1. **Map the decision** — name the choice, the status quo, the load, the prior, the loss.
-2. **Route to the lever** — one reference module, chosen by the map, not by preference.
-3. **Build the argument** — frame, reference point, 2–3 options, one story, the real
-   objection answered.
-4. **Run the disclosure test** — would the audience still say yes if they knew the mechanism?
-
-Reference modules load only when the routing table sends the agent there:
-
-| Module | Covers |
-| --- | --- |
-| [cognitive-architecture](references/cognitive-architecture.md) | Bounded rationality, System 1 / System 2, cognitive load, choice architecture |
-| [framing-and-loss-aversion](references/framing-and-loss-aversion.md) | Prospect theory, the loss multiplier, the fourfold pattern, anchoring, endowment |
-| [influence-levers](references/influence-levers.md) | Reciprocity, commitment, social proof, authority, liking, scarcity, unity, key biases |
-| [narrative](references/narrative.md) | Narrative transportation, the Sparkline and Hero's Guide arcs, self-referential encoding |
-| [ethics](references/ethics.md) | The manipulation spectrum, the disclosure test, the automatic reds |
-
-Progressive disclosure keeps the always-loaded cost to the name and description; the body
-loads on activation, the modules only when reached.
-
-## Ethics
-
-The skill runs a disclosure test on everything it produces:
-
-> If the audience read an accurate, plain-language explanation of the mechanism being used,
-> would they still willingly proceed?
-
-If the answer is no, it says so and offers the honest version that reaches the same goal.
-Fabricated proof, invented deadlines, hidden fees, and obstructed cancellation are treated
-as automatic failures, not tactics.
-
-## Structure
-
-```
-persuasion/
-├── SKILL.md
-├── references/
-│   ├── cognitive-architecture.md
-│   ├── framing-and-loss-aversion.md
-│   ├── influence-levers.md
-│   ├── narrative.md
-│   └── ethics.md
-```
-
-`SKILL.md` follows the [Agent Skills](https://agentskills.io) specification: YAML frontmatter
-with `name` and `description`, instructions in the body, reference files one level deep.
-
-## Contributing
-
-Issues and PRs welcome. Keep `SKILL.md` under 500 lines, push branch-specific material into
-`references/`, and name the mechanism behind any advice you add.
+**Can I edit it?** It's five Markdown files. Change a reference, run the command again.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
