@@ -13,6 +13,9 @@ npx skills add atpaawej/persuasion
 Installs into your agent's skill directory in about ten seconds. It's a Markdown folder, so
 there is nothing to configure.
 
+Listed on [skills.sh](https://www.skills.sh/atpaawej/persuasion/persuasion), where it passes
+the Gen Agent Trust Hub, Socket, and Snyk security audits.
+
 ## What changes
 
 | A generic agent writes | With `persuasion` loaded |
