@@ -87,8 +87,16 @@ Keep the folder named `persuasion` so it matches the `name` in `SKILL.md`.
 ## Questions
 
 **Does it work with my agent?** The `npx skills` CLI detects installed agents and writes to
-each one. Twenty are supported, including Claude Code, Cursor, Codex, Copilot, Gemini, Zed,
-and OpenCode.
+each one. Twenty are supported:
+
+<details>
+<summary>Supported agents</summary>
+
+Claude Code · Cursor · Codex · GitHub Copilot · Windsurf · Gemini · Cline · AMP ·
+Antigravity · OpenClaw · Droid · Goose · Kilo · Kiro CLI · Nous Research · OpenCode · Roo ·
+Trae · VS Code · Zed
+
+</details>
 
 **Will it make my agent sound like a late-night sales page?** Its first rule is that every
 recommendation names a mechanism, and its last step rejects anything that only works because
