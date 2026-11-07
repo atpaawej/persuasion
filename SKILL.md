@@ -1,8 +1,6 @@
 ---
 name: persuasion
 description: Persuasion science from cognitive psychology and behavioral economics. Use to write pitches and offers, reframe pricing or choices, handle objections, diagnose why an audience resists, apply framing, anchoring, or social proof, and audit tactics for manipulation.
-metadata:
-  source: persuasion-first-principles-skill.md
 ---
 
 # Persuasion from first principles

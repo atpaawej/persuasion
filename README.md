@@ -107,8 +107,6 @@ persuasion/
 │   ├── influence-levers.md
 │   ├── narrative.md
 │   └── ethics.md
-└── source/
-    └── persuasion-first-principles-skill.md
 ```
 
 `SKILL.md` follows the [Agent Skills](https://agentskills.io) specification: YAML frontmatter
